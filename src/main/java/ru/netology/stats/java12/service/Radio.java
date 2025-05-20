@@ -20,7 +20,7 @@ public class Radio {
     }
 
     public void nextStation() {
-        if (station < 9) {
+        if (station != 9) {
             station++;
         } else {
             station = 0;
@@ -28,20 +28,20 @@ public class Radio {
     }
 
     public void prevStation() {
-        if (station < 9) {
-            station = station - 1;
-        } else {
-            station = 0;
-        }
-    }
-
-    public void prevStationZero() {
-        if (station < 0) {
+        if (station != 0) {
             station = station - 1;
         } else {
             station = 9;
         }
     }
+
+ //   public void prevStationZero() {
+ //       if (station <= 0) {
+ //           station = station - 1;
+ //       } else {
+ //           station = 9;
+//        }
+  //  }
 
     public int getVolume() {
         return volume;
