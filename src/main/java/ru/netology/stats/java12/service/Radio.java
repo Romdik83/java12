@@ -35,6 +35,14 @@ public class Radio {
         }
     }
 
+    public void prevStationZero() {
+        if (station < 0) {
+            station = station - 1;
+        } else {
+            station = 9;
+        }
+    }
+
     public int getVolume() {
         return volume;
     }
@@ -47,25 +55,27 @@ public class Radio {
             return;
         }
 
-        this.volume = volume;}
+        this.volume = volume;
+    }
 
 
-        public void increaseVolume() {
-            if (volume < 100) {
-                volume++;
-            } else {
-                volume = 100;
-            }
-
-
-        }
-        public void decreaseVolume() {
-        if (volume <= 100) {
-            volume = volume - 1;
+    public void increaseVolume() {
+        if (volume > 0) {
+            volume++;
         } else {
-            volume = 0;
-        }
+            volume = 100;
         }
 
 
     }
+
+    public void decreaseVolume() {
+        if (volume != 0) {
+            volume = volume - 1;
+        } else {
+            volume = 0;
+        }
+    }
+
+
+}

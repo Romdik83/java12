@@ -37,18 +37,18 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-         @Test
-       public void prevStationZero() {
-           Radio radio = new Radio();
-           radio.setStation(0);
-            radio.prevStation();
-            int expected = 9;
-            int actual = radio.getStation();
-          Assertions.assertEquals(expected, actual);
-}
+    @Test
+    public void prevStationZero() {
+        Radio radio = new Radio();
+        radio.setStation(0);
+        radio.prevStationZero();
+        int expected = 9;
+        int actual = radio.getStation();
+        Assertions.assertEquals(expected, actual);
+    }
 
 
-@Test
+    @Test
     public void increaseVolume() {
         Radio radio = new Radio();
         radio.setVolume(50);
@@ -59,32 +59,34 @@ public class RadioTest {
 
     }
 
-@Test
-public void increaseVolumeMax() {
-    Radio radio = new Radio();
-    radio.setVolume(100);
-    radio.increaseVolume();
-    int expected = 100;
-    int actual = radio.getVolume();
-    Assertions.assertEquals(expected, actual);
+    @Test
+    public void increaseVolumeMax() {
+        Radio radio = new Radio();
+        radio.setVolume(100);
+        radio.increaseVolume();
+        int expected = 100;
+        int actual = radio.getVolume();
+        Assertions.assertEquals(expected, actual);
 
-}
-@Test
+    }
+
+    @Test
     public void decreaseVolume() {
         Radio radio = new Radio();
         radio.setVolume(51);
         radio.decreaseVolume();
-    int expected = 50;
-    int actual = radio.getVolume();
-    Assertions.assertEquals(expected, actual);
-}
-@Test
-public void decreaseVolumeMin() {
-    Radio radio = new Radio();
-    radio.setVolume(0);
-    radio.decreaseVolume();
-    int expected = 0;
-    int actual = radio.getVolume();
-    Assertions.assertEquals(expected, actual);
-}
+        int expected = 50;
+        int actual = radio.getVolume();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void decreaseVolumeMin() {
+        Radio radio = new Radio();
+        radio.setVolume(0);
+        radio.decreaseVolume();
+        int expected = 0;
+        int actual = radio.getVolume();
+        Assertions.assertEquals(expected, actual);
+    }
 }
