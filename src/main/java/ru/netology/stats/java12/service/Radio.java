@@ -1,65 +1,37 @@
 package ru.netology.stats.java12.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class Radio {
-
-    private int maxStation = 9;
-    private int minStation = 0;
-    private int station = minStation;
-
-    private int maxVolume = 100;
-    private int minVolume = 0;
-    private int volume = minVolume;
-
-    public Radio(int maxStation, int minStation, int maxVolume, int minVolume) {
-        this.maxStation = maxStation;
-        this.minStation = minStation;
-        this.maxVolume = maxVolume;
-        this.minVolume = minVolume;
-    }
-
+    private int station;
+    private int volume;
 
     public void setStation(int station) {
-        if (station < minStation) {
+        if (station < 0) {
             return;
         }
-        if (station > maxStation) {
+        if (station > 9) {
             return;
         }
         this.station = station;
     }
 
     public int getStation() {
+
         return station;
     }
 
-    public int getMaxStation() {
-        return maxStation;
-    }
-
-    public int getMinStation() {
-        return minStation;
-    }
-
     public void nextStation() {
-        if (station != maxStation) {
+        if (station != 9) {
             station++;
         } else {
-            station = minStation;
+            station = 0;
         }
     }
 
     public void prevStation() {
-        if (station != minStation) {
+        if (station != 0) {
             station = station - 1;
         } else {
-            station = maxStation;
+            station = 9;
         }
     }
 
@@ -67,38 +39,35 @@ public class Radio {
         return volume;
     }
 
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
     public void setVolume(int volume) {
-        if (volume >= maxVolume) {
+        if (volume >= 100) {
             return;
         }
-        if (volume <= minVolume) {
+        if (volume <= 0) {
             return;
         }
 
         this.volume = volume;
     }
 
+
     public void increaseVolume() {
-        if (volume > minVolume) {
+        if (volume > 0) {
             volume++;
         } else {
-            volume = maxVolume;
+            volume = 100;
         }
+
+
     }
 
     public void decreaseVolume() {
-        if (volume != minVolume) {
+        if (volume != 0) {
             volume = volume - 1;
         } else {
-            volume = minVolume;
+            volume = 0;
         }
     }
+
+
 }
