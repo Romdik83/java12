@@ -1,7 +1,6 @@
 package ru.netology.stats.java12.service;
 
 public class Radio {
-
     private int maxStation = 9;
     private int minStation = 0;
     private int station = minStation;
