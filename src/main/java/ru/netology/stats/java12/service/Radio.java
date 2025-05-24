@@ -48,7 +48,7 @@ public class Radio {
     //   }
 
     public void nextStation() {
-        if (station != maxStation) {
+        if (station < maxStation) {
             station++;
         } else {
             station = minStation;
@@ -56,7 +56,7 @@ public class Radio {
     }
 
     public void prevStation() {
-        if (station != minStation) {
+        if (station > minStation) {
             station = station - 1;
         } else {
             station = maxStation;
