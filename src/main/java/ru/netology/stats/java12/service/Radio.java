@@ -7,9 +7,9 @@ import lombok.Setter;
 import lombok.Getter;
 
 
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
-//@Data
+@Data
 @Getter
 @Setter
 
@@ -36,15 +36,15 @@ public class Radio {
     }
 
 
-    //  public void setStation(int station) {
-    //       if (station < minStation) {
-    //          return;
-    //      }
-    //      if (station > maxStation) {
-    //          return;
-    //      }
-    //      this.station = station;
-    //  }
+      public void setStation(int station) {
+           if (station < minStation) {
+              return;
+          }
+          if (station > maxStation) {
+              return;
+          }
+          this.station = station;
+      }
 
     //   public int getStation() {
     //       return station;
