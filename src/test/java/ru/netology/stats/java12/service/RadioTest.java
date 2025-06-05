@@ -138,4 +138,10 @@ public class RadioTest {
         int actual = radio.getVolume();
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void size() {
+        Radio radio = new Radio(20);
+        Assertions.assertEquals(20, radio.getMaxVolume());
+    }
 }

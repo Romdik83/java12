@@ -21,6 +21,10 @@ public class Radio {
         this.maxVolume = quantityVolume - 1;
     }
 
+    public Radio(int size) {
+        maxVolume = minVolume + size;
+    }
+
     public void setStation(int station) {
         if (station < minStation) {
             return;
