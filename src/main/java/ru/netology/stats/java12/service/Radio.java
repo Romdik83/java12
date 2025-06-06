@@ -1,8 +1,9 @@
 package ru.netology.stats.java12.service;
 
 public class Radio {
-    private int maxStation = 9;
+    private int numberStation = 10;
     private int minStation = 0;
+    private int maxStation = numberStation - 1;
     private int station = minStation;
 
     private int maxVolume = 100;
@@ -21,8 +22,12 @@ public class Radio {
         this.maxVolume = quantityVolume - 1;
     }
 
-    public Radio(int size) {
-        maxVolume = minVolume + size;
+    public Radio(int numberStation) { // конструктор для задания числа радиостанций
+        maxStation = numberStation - 1;
+    }
+
+    public Radio() { // конструктор для задания числа радиостанций по умолчанию
+
     }
 
     public void setStation(int station) {
