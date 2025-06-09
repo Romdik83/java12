@@ -1,73 +1,99 @@
 package ru.netology.stats.java12.service;
 
 public class Radio {
-    private int station;
-    private int volume;
+    private int currentStation;
+    private int currentVolume;
+    private int stationsNumber = 10;
+    private int maxStation;
+    private boolean on;
 
-    public void setStation(int station) {
-        if (station < 0) {
-            return;
-        }
-        if (station > 9) {
-            return;
-        }
-        this.station = station;
+    public Radio() {
     }
 
-    public int getStation() {
-
-        return station;
+    public Radio(int stationsNumber, boolean on) {
+        this.stationsNumber = stationsNumber;
     }
 
-    public void nextStation() {
-        if (station != 9) {
-            station++;
+    public int getCurrentStation() {
+        return currentStation;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public int getStationsNumber() {
+        return stationsNumber;
+    }
+
+    public int getMaxStation() {
+        return maxStation;
+    }
+
+    public boolean isOn() {
+        return on;
+    }
+
+    public void setCurrentStation(int currentStation) {
+        maxStation = stationsNumber - 1;
+        if (currentStation > maxStation) {
+            return;
+        }
+        if (currentStation < 0) {
+            return;
+        }
+        this.currentStation = currentStation;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > 100) {
+            return;
+        }
+        if (currentVolume < 0) {
+            return;
+        }
+        this.currentVolume = currentVolume;
+    }
+
+    public void goToNextStation() {
+        maxStation = stationsNumber - 1;
+        if (currentStation < maxStation) {
+            currentStation = currentStation + 1;
         } else {
-            station = 0;
+            currentStation = 0;
         }
     }
 
-    public void prevStation() {
-        if (station != 0) {
-            station = station - 1;
+    public void goToPrevStation() {
+        maxStation = stationsNumber - 1;
+        if (currentStation > 0) {
+            currentStation = currentStation - 1;
         } else {
-            station = 9;
+            currentStation = maxStation;
         }
     }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        if (volume >= 100) {
-            return;
-        }
-        if (volume <= 0) {
-            return;
-        }
-
-        this.volume = volume;
-    }
-
 
     public void increaseVolume() {
-        if (volume > 0) {
-            volume++;
-        } else {
-            volume = 100;
+        if (currentVolume < 100) {
+            currentVolume = currentVolume + 1;
         }
-
-
     }
 
     public void decreaseVolume() {
-        if (volume != 0) {
-            volume = volume - 1;
-        } else {
-            volume = 0;
+        if (currentVolume > 0) {
+            currentVolume = currentVolume - 1;
         }
     }
 
+    public void setStationsNumber(int stationsNumber) {
+        this.stationsNumber = stationsNumber;
+    }
 
+    public void setMaxStation(int stationsNumber) {
+        maxStation = stationsNumber - 1;
+    }
+
+    public void setOn(boolean on) {
+        this.on = on;
+    }
 }
