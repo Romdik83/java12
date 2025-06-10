@@ -3,97 +3,78 @@ package ru.netology.stats.java12.service;
 public class Radio {
     private int currentStation;
     private int currentVolume;
-    private int stationsNumber = 10;
-    private int maxStation;
-    private boolean on;
+    private final int numberStation = 10;
+    private final int minStation = 0;
+    private int maxStation = numberStation - 1;
+    private final int minVolume = 0;
+    private final int maxVolume = 100;
 
-    public Radio() {
+    public Radio(int numberStation) { // конструктор для задания числа радиостанций
+        maxStation = numberStation - 1;
     }
 
-    public Radio(int stationsNumber, boolean on) {
-        this.stationsNumber = stationsNumber;
+    public Radio() { // конструктор для задания числа радиостанций по умолчанию
     }
 
     public int getCurrentStation() {
         return currentStation;
     }
 
+    public void setCurrentStation(int newCurrentStation) { // указываем границы диапазона
+        if (newCurrentStation < minStation) {
+            return;
+        }
+        if (newCurrentStation > maxStation) {
+            return;
+        }
+        currentStation = newCurrentStation;
+    }
+
+    public void nextStation() {
+        if (currentStation < maxStation) {
+            currentStation = currentStation + 1;
+        } else {
+            currentStation = minStation; // переход счетчика после 9 на 0
+        }
+    }
+
+    public void prevStation() {
+        if (currentStation > minStation) {
+            currentStation = currentStation - 1;
+        } else {
+            currentStation = maxStation; // переход счетчика после 0 на 9
+        }
+    }
+
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public int getStationsNumber() {
-        return stationsNumber;
-    }
-
-    public int getMaxStation() {
-        return maxStation;
-    }
-
-    public boolean isOn() {
-        return on;
-    }
-
-    public void setCurrentStation(int currentStation) {
-        maxStation = stationsNumber - 1;
-        if (currentStation > maxStation) {
+    public void setCurrentVolume(int newCurrentVolume) { // указываем границы диапазона
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (currentStation < 0) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
-        this.currentStation = currentStation;
-    }
-
-    public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > 100) {
-            return;
-        }
-        if (currentVolume < 0) {
-            return;
-        }
-        this.currentVolume = currentVolume;
-    }
-
-    public void goToNextStation() {
-        maxStation = stationsNumber - 1;
-        if (currentStation < maxStation) {
-            currentStation = currentStation + 1;
-        } else {
-            currentStation = 0;
-        }
-    }
-
-    public void goToPrevStation() {
-        maxStation = stationsNumber - 1;
-        if (currentStation > 0) {
-            currentStation = currentStation - 1;
-        } else {
-            currentStation = maxStation;
-        }
+        currentVolume = newCurrentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
+        }
+        else {
+            currentVolume = maxVolume;
         }
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
-    }
-
-    public void setStationsNumber(int stationsNumber) {
-        this.stationsNumber = stationsNumber;
-    }
-
-    public void setMaxStation(int stationsNumber) {
-        maxStation = stationsNumber - 1;
-    }
-
-    public void setOn(boolean on) {
-        this.on = on;
+        else {
+            currentVolume = minVolume;
+        }
     }
 }
