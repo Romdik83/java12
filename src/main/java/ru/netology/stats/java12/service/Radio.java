@@ -63,8 +63,7 @@ public class Radio {
     public void increaseVolume() {
         if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
-        }
-        else {
+        } else {
             currentVolume = maxVolume;
         }
     }
@@ -72,8 +71,7 @@ public class Radio {
     public void decreaseVolume() {
         if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
-        }
-        else {
+        } else {
             currentVolume = minVolume;
         }
     }
