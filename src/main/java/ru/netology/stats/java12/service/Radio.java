@@ -1,73 +1,78 @@
 package ru.netology.stats.java12.service;
 
 public class Radio {
-    private int station;
-    private int volume;
+    private int currentStation;
+    private int currentVolume;
+    private final int numberStation = 10;
+    private final int minStation = 0;
+    private int maxStation = numberStation - 1;
+    private final int minVolume = 0;
+    private final int maxVolume = 100;
 
-    public void setStation(int station) {
-        if (station < 0) {
-            return;
-        }
-        if (station > 9) {
-            return;
-        }
-        this.station = station;
+    public Radio(int numberStation) { // конструктор для задания числа радиостанций
+        maxStation = numberStation - 1;
     }
 
-    public int getStation() {
+    public Radio() { // конструктор для задания числа радиостанций по умолчанию
+    }
 
-        return station;
+    public int getCurrentStation() {
+        return currentStation;
+    }
+
+    public void setCurrentStation(int newCurrentStation) { // указываем границы диапазона
+        if (newCurrentStation < minStation) {
+            return;
+        }
+        if (newCurrentStation > maxStation) {
+            return;
+        }
+        currentStation = newCurrentStation;
     }
 
     public void nextStation() {
-        if (station != 9) {
-            station++;
+        if (currentStation < maxStation) {
+            currentStation = currentStation + 1;
         } else {
-            station = 0;
+            currentStation = minStation; // переход счетчика после 9 на 0
         }
     }
 
     public void prevStation() {
-        if (station != 0) {
-            station = station - 1;
+        if (currentStation > minStation) {
+            currentStation = currentStation - 1;
         } else {
-            station = 9;
+            currentStation = maxStation; // переход счетчика после 0 на 9
         }
     }
 
-    public int getVolume() {
-        return volume;
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
-    public void setVolume(int volume) {
-        if (volume >= 100) {
+    public void setCurrentVolume(int newCurrentVolume) { // указываем границы диапазона
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (volume <= 0) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
-
-        this.volume = volume;
+        currentVolume = newCurrentVolume;
     }
-
 
     public void increaseVolume() {
-        if (volume > 0) {
-            volume++;
+        if (currentVolume < maxVolume) {
+            currentVolume = currentVolume + 1;
         } else {
-            volume = 100;
+            currentVolume = maxVolume;
         }
-
-
     }
 
     public void decreaseVolume() {
-        if (volume != 0) {
-            volume = volume - 1;
+        if (currentVolume > minVolume) {
+            currentVolume = currentVolume - 1;
         } else {
-            volume = 0;
+            currentVolume = minVolume;
         }
     }
-
-
 }

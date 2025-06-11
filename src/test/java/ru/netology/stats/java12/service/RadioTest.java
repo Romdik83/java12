@@ -4,109 +4,173 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class RadioTest {
+    Radio radio = new Radio(30);
 
     @Test
-    public void nextStation() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setStation(5);
-        radio.nextStation();
-        int expected = 6;
-        int actual = radio.getStation();
-        Assertions.assertEquals(expected, actual);
+    public void shouldNextStation() {
+        Radio radio = new Radio(30);
+        radio.setCurrentStation(26);
 
+        radio.nextStation();
+
+        int expected = 27;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void nextStationZero() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setStation(9);
+    public void shouldNextStationAfterMax() {
+        radio.setCurrentStation(29);
+
         radio.nextStation();
+
         int expected = 0;
-        int actual = radio.getStation();
-        Assertions.assertEquals(expected, actual);
+        int actual = radio.getCurrentStation();
 
-    }
-
-    @Test
-    public void prevStation() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setStation(6);
-        radio.prevStation();
-        int expected = 5;
-        int actual = radio.getStation();
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void prevStationZero() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setStation(0);
+    public void shouldNextStationDefaultRadio() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(6);
+
+        radio.nextStation();
+
+        int expected = 7;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldPreviousStation() {
+        radio.setCurrentStation(5);
+
         radio.prevStation();
+
+        int expected = 4;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldPreviousStationBeforeMin() {
+        radio.setCurrentStation(0);
+
+        radio.prevStation();
+
+        int expected = 29;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldStationAboveMax() {
+        radio.setCurrentStation(31);
+
+        radio.nextStation();
+
+        int expected = 1;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldStationBelowMin() {
+        radio.setCurrentStation(-2);
+
+        radio.prevStation();
+
+        int expected = 29;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSpecificallyStation() {
+        radio.setCurrentStation(3);
+
+        int expected = 3;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldIncreaseVolume() {
+        radio.setCurrentVolume(8);
+
+        radio.increaseVolume();
+
         int expected = 9;
-        int actual = radio.getStation();
+        int actual = radio.getCurrentVolume();
+
         Assertions.assertEquals(expected, actual);
     }
 
-
     @Test
-    public void increaseVolume() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setVolume(50);
-        radio.increaseVolume();
-        int expected = 51;
-        int actual = radio.getVolume();
-        Assertions.assertEquals(expected, actual);
+    public void shouldDecreaseVolume() {
+        radio.setCurrentVolume(8);
 
+        radio.decreaseVolume();
+
+        int expected = 7;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void increaseVolumeMax() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setVolume(100);
+    public void shouldIncreaseVolumeMax() {
+        radio.setCurrentVolume(100);
+
         radio.increaseVolume();
+
         int expected = 100;
-        int actual = radio.getVolume();
-        Assertions.assertEquals(expected, actual);
+        int actual = radio.getCurrentVolume();
 
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void decreaseVolume() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setVolume(51);
+    public void shouldDecreaseVolumeMin() {
+        radio.setCurrentVolume(0);
+
         radio.decreaseVolume();
-        int expected = 50;
-        int actual = radio.getVolume();
+
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void decreaseVolumeMin() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setVolume(0);
+    public void shouldIncreaseVolumeAboveMax() {
+        radio.setCurrentVolume(102);
+
+        radio.increaseVolume();
+
+        int expected = 1;
+        int actual = radio.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDecreaseVolumeBelowMin() {
+        radio.setCurrentVolume(-3);
+
         radio.decreaseVolume();
+
         int expected = 0;
-        int actual = radio.getVolume();
+        int actual = radio.getCurrentVolume();
+
         Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void nextStationMax() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setStation(10);
-        int expected = 0;
-        int actual = radio.getStation();
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void nextStationMin() {
-        ru.netology.stats.java12.service.Radio radio = new ru.netology.stats.java12.service.Radio();
-        radio.setStation(-1);
-        int expected = 0;
-        int actual = radio.getStation();
-        Assertions.assertEquals(expected, actual);
-
     }
 }
